@@ -5,10 +5,6 @@ from django.views import generic
 from django.utils import timezone
 from .models import Question, Choice
 
-# Create your views here.
-
-def filter_current_questions():
-    return Question.objects.filter(pub_date__lte=timezone.now())
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -20,6 +16,7 @@ class DetailView(generic.DetailView):
     template_name = 'polls/detail.html'
     def get_queryset(self):
         return filter_current_questions()
+        
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
@@ -43,3 +40,6 @@ def vote(request, question_id):
 
 def get_question(question_id):
     return get_object_or_404(Question, pk=question_id)
+
+def filter_current_questions():
+    return Question.objects.filter(pub_date__lte=timezone.now())
