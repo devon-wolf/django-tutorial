@@ -1,24 +1,34 @@
-<form action="{% url 'polls:vote' question.id %}" method="post">
-	{% csrf_token %}
-	<fieldset>
-		<legend>
-			<h1>{{ question.question_text }}</h1>
-		</legend>
+{% extends "polls/base.html" %}
 
-		{% if error_message %}
-		<p>
-			<strong>{{ error_message }}</strong>
-		</p>
-		{% endif %}
+{% block title %}
+	{{ question.question_text }}
+{% endblock %}
 
-		{% for choice in question.choice_set.all %}
-		<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-		<label for="choice{{ forloop.counter }}">
-			{{ choice.choice_text }}
-		</label>
-		<br />
-		{% endfor %}
-	</fieldset>
-	<input type="submit" value="Vote" />
-</form>
-<a href="{% url 'polls:index' %}">Go home</a>
+{% block content %}
+	<form action="{% url 'polls:vote' question.id %}" method="post">
+		{% csrf_token %}
+		<fieldset>
+			<legend>
+				<h1>{{ question.question_text }}</h1>
+			</legend>
+
+			{% if error_message %}
+			<p>
+				<strong>{{ error_message }}</strong>
+			</p>
+			{% endif %}
+
+			{% for choice in question.choice_set.all %}
+			<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+			<label for="choice{{ forloop.counter }}">
+				{{ choice.choice_text }}
+			</label>
+			<br />
+			{% endfor %}
+		</fieldset>
+		<input type="submit" value="Vote" />
+	</form>
+{% endblock %}
+{% block footer_nav %}
+	<a href="{% url 'polls:index' %}">Go home</a>
+{% endblock %}
