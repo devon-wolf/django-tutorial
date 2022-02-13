@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.urls import reverse
 from .models import Question
 
-# Create your tests here.
 class QuestionModelsTests(TestCase):
 	def test_was_published_recently_with_future_question(self):
 		test_time = timezone.now() + datetime.timedelta(days=30)
@@ -21,12 +20,6 @@ class QuestionModelsTests(TestCase):
 		recent_question = Question(pub_date=test_time)
 		self.assertIs(recent_question.was_published_recently(), True)
 
-def create_question(question_text, days):
-	published_time = timezone.now() + datetime.timedelta(days=days)
-	return Question.objects.create(question_text=question_text, pub_date=published_time)
-
-def get_latest_question_list(response):
-		return response.context['latest_question_list']
 class QuestionIndexViewTests(TestCase):
 	def get_index_response(self):
 		return self.client.get(reverse('polls:index'))
@@ -80,8 +73,6 @@ class QuestionIndexViewTests(TestCase):
 
 		self.assertQuerysetEqual(actual, expected)
 
-def get_detail_url(question):
-	return reverse('polls:detail', args=(question.id,))
 class QuestionDetailViewTests(TestCase):
 	def test_future_question(self):
 		future_question = create_question(question_text="A future question?", days=5)
@@ -94,5 +85,15 @@ class QuestionDetailViewTests(TestCase):
 		past_question = create_question(question_text='A past question?', days=-5)
 		url = get_detail_url(question=past_question)
 		response = self.client.get(url)
-		
+
 		self.assertContains(response, past_question.question_text)
+
+def create_question(question_text, days):
+	published_time = timezone.now() + datetime.timedelta(days=days)
+	return Question.objects.create(question_text=question_text, pub_date=published_time)
+
+def get_latest_question_list(response):
+		return response.context['latest_question_list']
+
+def get_detail_url(question):
+	return reverse('polls:detail', args=(question.id,))
