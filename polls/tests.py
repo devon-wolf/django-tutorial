@@ -93,7 +93,7 @@ def create_question(question_text, days):
 	return Question.objects.create(question_text=question_text, pub_date=published_time)
 
 def get_latest_question_list(response):
-		return response.context['latest_question_list']
+	return response.context['latest_question_list']
 
 def get_detail_url(question):
 	return reverse('polls:detail', args=(question.id,))
