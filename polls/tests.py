@@ -33,7 +33,7 @@ class QuestionIndexViewTests(TestCase):
 	
 	def test_no_questions(self):
 		response = self.get_index_response()
-		
+
 		expected = []
 		actual = get_latest_question_list(response=response)
 
@@ -79,3 +79,18 @@ class QuestionIndexViewTests(TestCase):
 		actual = get_latest_question_list(response=response)
 
 		self.assertQuerysetEqual(actual, expected)
+
+def get_detail_url(question):
+	return reverse('polls:detail', args=(question.id,))
+class QuestionDetailViewTests(TestCase):
+	def test_future_question(self):
+		future_question = create_question(question_text="A future question?", days=5)
+		url = get_detail_url(question=future_question)
+		response = self.client.get(url)
+		self.assertEqual(response.status_code, 404)
+
+	def test_past_question(self):
+		past_question = create_question(question_text='A past question?', days=-5)
+		url = get_detail_url(question=past_question)
+		response = self.client.get(url)
+		self.assertContains(response, past_question.question_text)
