@@ -11,14 +11,19 @@ html, body {
 
 body {
 	font-family: monospace;
+	min-height: 100vh;
+	min-width: 100vw;
+	display: grid;
+	grid-template-rows: min-content 1fr min-content;
 }
 
 header {
-	background-color: aquamarine;
+	background-color: darkcyan;
+	color: white;
 }
 
 footer {
-	background-color: springgreen;
+	background-color: purple;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,4 +36,12 @@ header, footer, main {
 
 a:link, a:visited {
 	color: green;
+}
+
+.title-link {
+	text-decoration: none;
+}
+
+.nav-link:link, .nav-link:visited {
+	color: lightcyan;
 }

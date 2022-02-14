@@ -30,6 +30,8 @@
     - you can visit `http://localhost:8000/admin`, but you won't be able to login until you create an admin user
         1) run `python manage.py createsuperuser` and follow the prompts; you can then use the credentials you create to login to the admin site
 
+1) run tests with `python manage.py test` and confirm everything is working as intended
+
 - Everything should work now! If not, consult the following resources for troubleshooting:
     - [Django Installation Docs](https://docs.djangoproject.com/en/4.0/intro/install/)
     - [venv Docs](https://docs.python.org/3/tutorial/venv.html)

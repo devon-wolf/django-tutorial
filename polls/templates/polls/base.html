@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 </head>
 <body>
-	<header><h1>Polls Tutorial</h1></header>
+	<header><h1><a class="title-link nav-link" href="{% url 'polls:index' %}">Polls Tutorial</a></h1></header>
 	<main>{% block content %}{% endblock %}</main>
 	<footer><nav>{% block footer_nav %}{% endblock %}</nav></footer>
 </body>

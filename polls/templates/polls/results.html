@@ -13,6 +13,6 @@
 	</ul>
 {% endblock %}
 {% block footer_nav %}
-	<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
-	<a href="{% url 'polls:index' %}">Go home</a>
+	<a class="nav-link" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+	<a class="nav-link" href="{% url 'polls:index' %}">Go home</a>
 {% endblock %}
