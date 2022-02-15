@@ -4,7 +4,7 @@
 1) set up (or start up) your virtual environment
     - on my Mac on 2022-02-14, this looks like 
         - `python3 -m venv ~/.venv/django-base`
-        - `source ~/.venv/django-base/bin/activate`
+        - `source ~/.venv/django-base/bin/activate` or `source ~/.venv/django-base/Scripts/activate`
     - if the environment has been set up successfully, you will see the environment's name before your shell prompt
         - for me, after the above commands, it looks like this:
             - `(django-base) username@machine ~ %`
@@ -36,3 +36,13 @@
     - [Django Installation Docs](https://docs.djangoproject.com/en/4.0/intro/install/)
     - [venv Docs](https://docs.python.org/3/tutorial/venv.html)
     - [Django Polls App Tutorial](https://docs.djangoproject.com/en/4.0/intro/tutorial01/)
+
+## Integrating Remote Changes
+After pulling down from remote:
+1) activate your virtual environment `source ~/.venv/django-base/bin/activate` or `source ~/.venv/django-base/Scripts/activate`
+1) install dependencies `pip install -r requirements.txt`; only necessary if dependencies have changed, but doesn't hurt to run it to check
+1) check for migration changes with `python manage.py makemigrations` or `python manage.py makemigrations polls` - this will generate migrations if there are any to apply
+    - if needed, run migrations with `python manage.py migrate`
+1) run tests to confirm all is well `python manage.py test`
+1) run server `python manage.py runserver`
+And you should be set!
