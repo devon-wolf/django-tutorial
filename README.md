@@ -38,11 +38,19 @@
     - [Django Polls App Tutorial](https://docs.djangoproject.com/en/4.0/intro/tutorial01/)
 
 ## Integrating Remote Changes
-After pulling down from remote:
-1) activate your virtual environment `source ~/.venv/django-base/bin/activate` or `source ~/.venv/django-base/Scripts/activate`
-1) install dependencies `pip install -r requirements.txt`; only necessary if dependencies have changed, but doesn't hurt to run it to check
-1) check for migration changes with `python manage.py makemigrations` or `python manage.py makemigrations polls` - this will generate migrations if there are any to apply
-    - if needed, run migrations with `python manage.py migrate`
-1) run tests to confirm all is well `python manage.py test`
-1) run server `python manage.py runserver`
+After pulling down from remote (`git pull origin main` or similar):
+1) activate your virtual environment
+    - `source ~/.venv/django-base/bin/activate` or `source ~/.venv/django-base/Scripts/activate`
+1) install dependencies
+    - `pip install -r requirements.txt`
+    - only necessary if dependencies have changed, but doesn't hurt to run it to check
+1) check for migration changes
+    - `python manage.py makemigrations` or `python manage.py makemigrations polls`
+    - this will generate migrations if there are any to apply
+1) if needed, run migrations
+    - `python manage.py migrate`
+1) run tests to confirm all is well
+    - `python manage.py test`
+1) run server
+    - `python manage.py runserver`
 And you should be set!
